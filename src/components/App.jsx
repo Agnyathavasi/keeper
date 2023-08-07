@@ -3,6 +3,7 @@ import Header from "./Header";
 import Note from "./Note.jsx";
 import Footer from "./Footer";
 import FaB from "./floatingButton";
+import "../css/app.css"
 
 function App() {
   const [notes, setNotes] = useState([]);
@@ -31,24 +32,26 @@ function App() {
   };
 
   return (
-    <div>
+    <div className="app">
       <Header />
       {notes.length === 0 ? (
         <h2 style={custonmStyle}>Add a note to get Started.</h2>
       ) : (
         ""
       )}
-      {notes.map((note, index) => {
-        return (
-          <Note
-            id={index}
-            title={note.title}
-            content={note.content}
-            key={note.key}
-            onDelete={deleteItem}
-          />
-        );
-      })}
+      <div className="notesSection">
+        {notes.map((note, index) => {
+          return (
+            <Note
+              id={index}
+              title={note.title}
+              content={note.content}
+              key={note.key}
+              onDelete={deleteItem}
+            />
+          );
+        })}
+      </div>
       <Footer />
       <FaB onAdd={addNewItem} />
     </div>
